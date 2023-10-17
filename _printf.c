@@ -74,6 +74,7 @@ int _printf(const char *format, ...)
 						spec_ptr = va_arg(var, char *);
 						var_print += specify(specifiers[j].ptr, spec_ptr, buffer, &total_print, end);
 						break;
+					case 'd':
 					case 'i':
 						spec_int = va_arg(var, int);
 						spec_ptr = conv_int(&spec_int);
