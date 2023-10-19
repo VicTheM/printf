@@ -21,12 +21,23 @@ long int print_char(char a)
  */
 long int print_string(char *str)
 {
-	unsigned int len;
+	unsigned int k, j, c;
+	unsigned long int len;
 
-	len = 0;
+	len = k = j = c = 0;
 	while (str[len] != '\0')
+	{
 		len++;
-	return (write(1, str, len));
+		j++;
+		if (j == 1024)
+		{
+			write(1, str + c, 1024);
+			c += 1024;
+			k++;
+			j = 0;
+		}
+	}
+	return (write(1, str, len) + (k * 1024));
 }
 
 
@@ -38,11 +49,22 @@ long int print_string(char *str)
  */
 long int print_buffer(char *buffer)
 {
-	unsigned long int len = 0;
+	unsigned long int len, k, j, c;
 
+	len = c = k = j = 0;
 	while (buffer[len] != '\0')
+	{
+		j++;
 		len++;
-	return (write(1, buffer, len));
+		if (j == 1024)
+		{
+			write(1, buffer + c, 1024);
+			c += 1024;
+			k++;
+			j = 0;
+		}
+	}
+	return (write(1, buffer, len) + (k * 1024));
 }
 
 /**
