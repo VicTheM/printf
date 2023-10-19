@@ -1,3 +1,4 @@
+#include <stdarg.h>
 #ifndef _MAIN_H_
 #define _MAIN_h_
 
@@ -20,18 +21,17 @@ typedef struct spec1
 } spec_i;
 */
 /* FUNCTIONS USED IN MAIN ENTRY POIINT */
-cleanup(char *, va_list *);
-validate_input(char *);
-unsigned int fill_buffer(char *, unsigned int, char *, unsigned int *);
-unsigned int print_buffer(char *);
-unsigned int print_special(char);
-unsigned int specify(char *, unsigned int *, va_list *);
-escape(char *, unsigned int *);
+unsigned long int validate_input(const char *str);
+long int fill_buffer(char *dest, unsigned long start, const char *src, unsigned long *c);
+long int print_buffer(char *str);
+long int print_special(char a);
+long int specify(const char *format, unsigned long *c, va_list *list);
+void escape(char *, unsigned long *);
 
 int _printf(const char *format, ...);
-unsigned int print_char(char *);
-unsigned int print_string(char *)
-char *conv_int(int *);
-unsigned int get_len(const char *format);
+long int print_char(char a);
+long int print_string(char *str);
+/* char *conv_int(int *); */
+unsigned long int get_len(const char *format);
 
 #endif /* _MAIN_H_ */
